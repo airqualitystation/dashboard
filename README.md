@@ -1,5 +1,6 @@
-# dashboard
-Dashboard using NodeRED, InfluxDB and Grafana for the Air Quality Station
+# Dashboard using NodeRED, InfluxDB and Grafana for the Air Quality Station
+
+Si ce tutoriel vous est utile, pensez à donner une étoile :star: en haut à droit.
 
 
 ```bash
