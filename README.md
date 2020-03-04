@@ -5,6 +5,7 @@ Si ce tutoriel vous est utile, pensez à donner une étoile :star: en haut à dr
 
 ```bash
 docker-compose up -d
+docker-compose ps
 docker-compose logs -f
 
 ```
@@ -18,3 +19,11 @@ Ouvrez les pages suivantes:
 Ouvrez la page suivante http://localhost:3000 et loggez vous avec `admin` `__SUPER_SECRET_TO_CHANGE__`
 
 Configurez le/les brokers MQTT avec vos credentials (si c'est nécessaire).
+
+Commandes pour accéder aux shells des 3 conteneurs Docker
+```bash
+docker-compose exec -i nodered bash
+docker-compose exec -i grafana bash
+docker-compose exec -i influxdb bash
+
+```
