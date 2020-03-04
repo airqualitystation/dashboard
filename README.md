@@ -16,3 +16,5 @@ Ouvrez les pages suivantes:
 * http://localhost:1880/worldmap avec `user` `MY_SUPER_USER_SECRET`
 
 Ouvrez la page suivante http://localhost:3000 et loggez vous avec `admin` `__SUPER_SECRET_TO_CHANGE__`
+
+Configurez le/les brokers MQTT avec vos credentials (si c'est nécessaire).
