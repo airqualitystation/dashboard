@@ -1,15 +1,22 @@
 # Dashboard using NodeRED, InfluxDB and Grafana for the Air Quality Station
 
-Si ce tutoriel vous est utile, pensez à donner une étoile :star: en haut à droit.
+## Prérequis
+* Installez Docker et Docker Compose
 
+## Lancement
 
 ```bash
+mkdir airqualitystation
+cd airqualitystation
+git clone https://github.com/airqualitystation/dashboard.git
+cd dashboard
+
 docker-compose up -d
 docker-compose ps
 docker-compose logs -f
-
 ```
 
+## Configuration
 
 Ouvrez les pages suivantes:
 * http://localhost:1880 avec `admin` `MY_SUPER_ADMIN_SECRET`
@@ -19,6 +26,8 @@ Ouvrez les pages suivantes:
 Ouvrez la page suivante http://localhost:3000 et loggez vous avec `admin` `__SUPER_SECRET_TO_CHANGE__`
 
 Configurez le/les brokers MQTT avec vos credentials (si c'est nécessaire).
+
+## Extra
 
 Commandes pour accéder aux shells des 3 conteneurs Docker
 ```bash
