@@ -36,37 +36,40 @@ docker-compose exec -i grafana bash
 docker-compose exec -i influxdb bash
 
 ```
-## Prototype Cayenne-NodeRED-InfluxDB-Grafana
+## Protocol Cayenne-NodeRED-InfluxDB-Grafana 
 
-Objectif:
-	Suite à la réussite d’envoyer les données à “Cayenne”, on établit le prototype de communication entre Cayenne-NodeRED-InfluxDB-Grafana. Tous ces communications, on peut construire via NodeRED-un outil de développement basé sur les flux pour la programmation visuelle développé à l'origine par IBM pour connecter des périphériques matériels, des API et des services en ligne dans le cadre de l'Internet des objets.
-
-
-Figure I.1: Le flux complété
-
-Figure I.2: Le prototype de communication
+* Objective:
+Following the success of sending the data to “Cayenne”, the communication prototype between Cayenne-NodeRED-InfluxDB-Grafana is established. All of these communications can be built via NodeRED-a flow-based development tool for visual programming originally developed by IBM to connect hardware devices, APIs and online services as part of the Internet of objects.
 
 
-La communication entre Cayenne et NodeRED:
-	Sur NodeRED, on utilise les noeuds “ttn”:
-ttn event: Un nœud pour recevoir les événements des appareils sur The Things Network.
-ttn uplink: Un nœud pour recevoir les messages de liaison montante des appareils sur The Things Network.
-ttn downlink: Un nœud pour envoyer un message de liaison descendante à un appareil sur The Things Network.
+Figure I.1: The flow completed
 
-Figure II.1: Les noeuds de TTN
+Figure I.2: Protocol of cummunication
+
+
+* Communication between Cayenne and NodeRED:
+
+On NodeRED, we use the “ttn” nodes:
+ttn event: A node for receiving events from devices on The Things Network.
+ttn uplink: A node for receiving uplink messages from devices on The Things Network.
+ttn downlink: A node to send a downlink message to a device on The Things Network.
+
+Figure II.1: TTN nodes
+
 Configuration:
 App ID: airquality_polytech
 Access Key: ttn-account-v2.mXRfK4rBu8-YdEVpAGzfu8BWiZPFDAG8Z0hL6iETwSw
-Discovery Adress: discovery.thethingsnetwork.org:1900
+Discovery Address: discovery.thethingsnetwork.org:1900
 Device ID: 3131353852378418
-	Sur le niveau de projet, on n’a que besoin d’utiliser le noeud “ttn uplink” pour récupérer les données. 
+In this project, we only need to use the "ttn uplink" node to retrieve the data.
 
-Figure II.2: Le message reçu par le noeuds TTN
-La communication entre NodeRED et InfluxDB:
-	On peut créer la base des données InfluxDB sur NodeRED en ajoutant les noeuds spécifiques qui permettent d'effectuer des requêtes de base sur une base de données de séries chronologiques influxdb. En configurant sur ces noeuds, on peut choisir entre créer ou annuler la base des données désirées.
+Figure II.2: The message received by the TTN nodes
+
+* Communication between NodeRED and InfluxDB:
+You can create the InfluxDB database on NodeRED by adding the specific nodes which allow you to perform basic queries on an influxdb time series database. By configuring on these nodes, one can choose between creating or canceling the desired database.
 	
 	
-Figure III.1: Les noeuds d’InfluxDB
+Figure III.1: InfluxDB nodes
 Configuration:
 Host: influxdb
 Port: 8086
@@ -76,41 +79,45 @@ CREATE DATABASE "Quality_air" WITH DURATION 60d REPLICATION 1 SHARD DURATION 1h 
 DROP DATABASE "Quality_air"
 DROP MEASUREMENT PM_1
 
-	En cliquant sur les noeuds “CREATE DATABASE” et “DROP DATABASE”, on va recevoir les messages correspondants ci-dessous. Avec la même fonction, le noeud “DROP” permet de redémarrer les séries des données dans la base des données.
+By clicking on the nodes “CREATE DATABASE” and “DROP DATABASE”, we will receive the corresponding messages below. With the same function, the “DROP” node is used to restart the series of data in the database.
 
-Figure III.2: Les messages reçu quand on crée une base de données d’InfluxDB
-Parce que le message qu’on reçoit est sous la forme “msg: Object” donc on a besoin d’utiliser le noeud de fonction pour changer le nom de message “Set msg to payload” et de là, on peut extraire les données qu’on veut grâce au noeud de changement “Extract payload_fields”. Une fois que le message est extrait, on reçoit le résultat comme ci-dessous:
+Figure III.2: Messages received when creating an InfluxDB database
 
-Figure III.3: Les messages envoyés à la base de données d’InfluxDB
+Because the message we receive is in the form "msg: Object" so we need to use the function node to change the message name "Set msg to payload" and from there we can extract the data that we want thanks to the change node “Extract payload_fields”. Once the message is extracted, we receive the result as below:
 
-Figure III.4: Les noeuds qui envoient les messages à la base de données d’InfluxDB
+Figure III.3: Messages sent to the InfluxDB database
+
+Figure III.4: The nodes that send the messages to the InfluxDB database
+
 Configuration:
 Measurement: PM_1_QA
-	Après, on extrait la valeur de chaque catégorie, et on construit pour chaque catégorie un message sous la forme d’“Object”. Ensuite, ces messages sont envoyés et sauvegardés sur la base des données “InfluxDB”, dans ce cas, la base des données est installé sur server d’“https://air-quality.iot.imag.fr/”.
 
-La communication entre InfluxDB et Grafana:
+Next, we extract the value of each category, and we construct a message for each category in the form of "Object". Then, these messages are sent and saved on the "InfluxDB" database, in this case, the database is installed on the server of "https://air-quality.iot.imag.fr/".
 
-	Sur Grafana, on ne doit pas installer Grafana sur le PC personnel car c’est déjà installé sur le server. En effet, on ne doit que créer un “Data Sources” pour récupérer les données dans la source de données InfluxDB et les afficher sur  “Dashboard”.
-	Ici, on crée une sourcre de données “InfluxDB” qui contient une base de données “Quality_air”. One fois qu’on clique sur “Save and Test” et recoit deux affichage “Database upload” et “Data source is working” qui sont bien validées, la base des données est activé.
+* Communication between InfluxDB and Grafana:
+
+On Grafana, you should not install Grafana on the personal PC because it is already installed on the server. In fact, you only need to create a “Data Sources” to retrieve the data from the InfluxDB data source and display them on “Dashboard”.
+Here, we create a data source “InfluxDB” which contains a database “Quality_air”. Once you click on “Save and Test” and receive two displays “Database upload” and “Data source is working” which are well validated, the database is activated.
 
 
-Figure IV.1: Les sources des données sur Grafana
+Figure IV.1: Data sources for Grafana
 
-Figure IV.2: La création d’une source des données
-	Enfin, on crée un “Dashboard” pour afficher les données.
+Figure IV.2: Creating a data source
 
-Figure IV.3: L’affichage de Grafana
+Finally, we create a “Dashboard” to display the data.
 
-Access:
+Figure IV.3: The Grafana display
 
-Le dashboard Grafana  qu’on utilise pour présenter les données de la station et de celles de Polytech (MCF88):
+* Access:
+
+The Grafana dashboard that we use to present the station and Polytech (MCF88) data:
 
 https://air-quality.iot.imag.fr/
-admin  
+admin
 E7534gx7Hp2TW679N34264
 
-Pour personnaliser le flow Nodered en intégrant TTN:
+To customize the flow Nodered by integrating TTN:
 
 https://air-quality-n.iot.imag.fr/
-admin 
+admin
 f723aAA33emV6jv
