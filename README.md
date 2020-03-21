@@ -41,15 +41,15 @@ docker-compose exec -i influxdb bash
 * Objective:
 Following the success of sending the data to “Cayenne”, the communication prototype between Cayenne-NodeRED-InfluxDB-Grafana is established. All of these communications can be built via NodeRED-a flow-based development tool for visual programming originally developed by IBM to connect hardware devices, APIs and online services as part of the Internet of objects.
 
-
 ![Air Quality Station 2020](Image/The_flow_completed.png)
 <p align="center">
-  <i>Figure I.1: The flow completed </i>
+  <i>Figure I.1: The flow completed</i>
 </p>
 
-
-Figure I.2: Protocol of cummunication
-
+![Air Quality Station 2020](Image/Protocol_of_cummunication.png)
+<p align="center">
+  <i>Figure I.2: Protocol of cummunication</i>
+</p>
 
 * Communication between Cayenne and NodeRED:
 
@@ -58,7 +58,10 @@ ttn event: A node for receiving events from devices on The Things Network.
 ttn uplink: A node for receiving uplink messages from devices on The Things Network.
 ttn downlink: A node to send a downlink message to a device on The Things Network.
 
-Figure II.1: TTN nodes
+![Air Quality Station 2020](Image/TTN_nodes.png)
+<p align="center">
+  <i>Figure II.1: TTN nodes</i>
+</p>
 
 Configuration:
 App ID: airquality_polytech
@@ -67,13 +70,19 @@ Discovery Address: discovery.thethingsnetwork.org:1900
 Device ID: 3131353852378418
 In this project, we only need to use the "ttn uplink" node to retrieve the data.
 
-Figure II.2: The message received by the TTN nodes
+![Air Quality Station 2020](Image/The_message_received_by_the_TTN_nodes.png)
+<p align="center">
+  <i>Figure II.2: The message received by the TTN nodes</i>
+</p>
 
 * Communication between NodeRED and InfluxDB:
 You can create the InfluxDB database on NodeRED by adding the specific nodes which allow you to perform basic queries on an influxdb time series database. By configuring on these nodes, one can choose between creating or canceling the desired database.
 	
-	
-Figure III.1: InfluxDB nodes
+![Air Quality Station 2020](Image/InfluxDB_nodes.png)
+<p align="center">
+  <i>Figure III.1: InfluxDB nodes</i>
+</p>	
+
 Configuration:
 Host: influxdb
 Port: 8086
@@ -85,13 +94,23 @@ DROP MEASUREMENT PM_1
 
 By clicking on the nodes “CREATE DATABASE” and “DROP DATABASE”, we will receive the corresponding messages below. With the same function, the “DROP” node is used to restart the series of data in the database.
 
-Figure III.2: Messages received when creating an InfluxDB database
+![Air Quality Station 2020](Image/Messages_received_when_creating_an_InfluxDB_database.png)
+<p align="center">
+  <i>Figure III.2: Messages received when creating an InfluxDB database</i>
+</p>	
+
 
 Because the message we receive is in the form "msg: Object" so we need to use the function node to change the message name "Set msg to payload" and from there we can extract the data that we want thanks to the change node “Extract payload_fields”. Once the message is extracted, we receive the result as below:
 
-Figure III.3: Messages sent to the InfluxDB database
+![Air Quality Station 2020](Image/Messages_sent_to_the_InfluxDB_database.png)
+<p align="center">
+  <i>Figure III.3: Messages sent to the InfluxDB database</i>
+</p>	
 
-Figure III.4: The nodes that send the messages to the InfluxDB database
+![Air Quality Station 2020](Image/The_nodes_that_send_the_messages_to_the_InfluxDB_database.png)
+<p align="center">
+  <i>Figure III.4: The nodes that send the messages to the InfluxDB database</i>
+</p>	
 
 Configuration:
 Measurement: PM_1_QA
@@ -103,14 +122,22 @@ Next, we extract the value of each category, and we construct a message for each
 On Grafana, you should not install Grafana on the personal PC because it is already installed on the server. In fact, you only need to create a “Data Sources” to retrieve the data from the InfluxDB data source and display them on “Dashboard”.
 Here, we create a data source “InfluxDB” which contains a database “Quality_air”. Once you click on “Save and Test” and receive two displays “Database upload” and “Data source is working” which are well validated, the database is activated.
 
+![Air Quality Station 2020](Image/Data_sources_for_Grafana.png)
+<p align="center">
+  <i>Figure IV.1: Data sources for Grafana</i>
+</p>	
 
-Figure IV.1: Data sources for Grafana
-
-Figure IV.2: Creating a data source
+![Air Quality Station 2020](Image/Creating_a_data_source.png)
+<p align="center">
+  <i>Figure IV.2: Creating a data source</i>
+</p>	
 
 Finally, we create a “Dashboard” to display the data.
 
-Figure IV.3: The Grafana display
+![Air Quality Station 2020](Image/The_Grafana_display.png)
+<p align="center">
+  <i>Figure IV.3: The Grafana display</i>
+</p>	
 
 * Access:
 
