@@ -42,7 +42,11 @@ docker-compose exec -i influxdb bash
 Following the success of sending the data to “Cayenne”, the communication prototype between Cayenne-NodeRED-InfluxDB-Grafana is established. All of these communications can be built via NodeRED-a flow-based development tool for visual programming originally developed by IBM to connect hardware devices, APIs and online services as part of the Internet of objects.
 
 
-Figure I.1: The flow completed
+![Air Quality Station 2020](images/The_flow_completed.png)
+<p align="center">
+  <i>Figure I.1: The flow completed </i>
+</p>
+
 
 Figure I.2: Protocol of cummunication
 
