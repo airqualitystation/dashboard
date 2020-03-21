@@ -102,7 +102,7 @@ By clicking on the nodes “CREATE DATABASE” and “DROP DATABASE”, we will 
 
 Because the message we receive is in the form "msg: Object" so we need to use the function node to change the message name "Set msg to payload" and from there we can extract the data that we want thanks to the change node “Extract payload_fields”. Once the message is extracted, we receive the result as below:
 
-![Air Quality Station 2020|250x250](Image/Messages_sent_to_the_InfluxDB_database.png)
+![Air Quality Station 2020](Image/Messages_sent_to_the_InfluxDB_database.png)
 <p align="center">
   <i>Figure III.3: Messages sent to the InfluxDB database</i>
 </p>	
