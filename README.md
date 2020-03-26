@@ -54,8 +54,11 @@ Following the success of sending the data to “Cayenne”, the communication pr
 * Communication between Cayenne and NodeRED:
 
 On NodeRED, we use the “ttn” nodes:
+
 ttn event: A node for receiving events from devices on The Things Network.
+
 ttn uplink: A node for receiving uplink messages from devices on The Things Network.
+
 ttn downlink: A node to send a downlink message to a device on The Things Network.
 
 ![Air Quality Station 2020](Image/TTN_nodes.png)
@@ -64,10 +67,15 @@ ttn downlink: A node to send a downlink message to a device on The Things Networ
 </p>
 
 Configuration:
+
 App ID: airquality_polytech
+
 Access Key: ttn-account-v2.mXRfK4rBu8-YdEVpAGzfu8BWiZPFDAG8Z0hL6iETwSw
+
 Discovery Address: discovery.thethingsnetwork.org:1900
+
 Device ID: 3131353852378418
+
 In this project, we only need to use the "ttn uplink" node to retrieve the data.
 
 ![Air Quality Station 2020](Image/The_message_received_by_the_TTN_nodes.png)
@@ -84,12 +92,19 @@ You can create the InfluxDB database on NodeRED by adding the specific nodes whi
 </p>	
 
 Configuration:
+
 Host: influxdb
+
 Port: 8086
+
 Database: Quality_air
+
 Query: 
+
 CREATE DATABASE "Quality_air" WITH DURATION 60d REPLICATION 1 SHARD DURATION 1h NAME "sixty_days"
+
 DROP DATABASE "Quality_air"
+
 DROP MEASUREMENT PM_1
 
 By clicking on the nodes “CREATE DATABASE” and “DROP DATABASE”, we will receive the corresponding messages below. With the same function, the “DROP” node is used to restart the series of data in the database.
@@ -113,6 +128,7 @@ Because the message we receive is in the form "msg: Object" so we need to use th
 </p>	
 
 Configuration:
+
 Measurement: PM_1_QA
 
 Next, we extract the value of each category, and we construct a message for each category in the form of "Object". Then, these messages are sent and saved on the "InfluxDB" database, in this case, the database is installed on the server of "https://air-quality.iot.imag.fr/".
