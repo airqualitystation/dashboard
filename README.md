@@ -36,7 +36,7 @@ docker-compose exec -i grafana bash
 docker-compose exec -i influxdb bash
 
 ```
-## Protocol Cayenne-NodeRED-InfluxDB-Grafana 
+## Protocol TTN-NodeRED-InfluxDB-Grafana 
 
 * Objective:
 Following the success of sending the data to “Cayenne”, the communication prototype between Cayenne-NodeRED-InfluxDB-Grafana is established. All of these communications can be built via NodeRED-a flow-based development tool for visual programming originally developed by IBM to connect hardware devices, APIs and online services as part of the Internet of objects.
