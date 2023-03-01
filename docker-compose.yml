@@ -24,4 +24,50 @@ services:
     links:
       - influxdb:influxdb
 
+
+  # From https://github.com/influxdata/TICK-docker/blob/master/1.3/docker-compose.yml
+  # Define a Chronograf service
+  chronograf:
+    image: chronograf
+    environment:
+      INFLUXDB_URL: http://influxdb:8086
+      KAPACITOR_URL: http://kapacitor:9092
+    ports:
+      - "8888:8888"
+    links:
+      - influxdb
+      - kapacitor
+      
+  # Define a Kapacitor service
+  kapacitor:
+    image: kapacitor
+    environment:
+      KAPACITOR_HOSTNAME: kapacitor
+      KAPACITOR_INFLUXDB_0_URLS_0: http://influxdb:8086
+    links:
+      - influxdb
+    ports:
+      - "9092:9092"
+      
+  # Define a service for using the influx CLI tool.
+  # docker-compose run influxdb-cli
+  influxdb-cli:
+    image: influxdb
+    entrypoint:
+      - influx
+      - -host
+      - influxdb
+    links:
+      - influxdb
+      
+  # Define a service for using the kapacitor CLI tool.
+  # docker-compose run kapacitor-cli
+  kapacitor-cli:
+    image: kapacitor
+    entrypoint: bash
+    environment:
+      KAPACITOR_URL: http://kapacitor:9092
+    links:
+      - kapacitor
+
 # TODO nginx

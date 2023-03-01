@@ -1,5 +1,5 @@
 # Copyright (C) CampusIoT,  - All Rights Reserved
-# Written by CampusIoT Dev Team, 2016-2018
+# Written by CampusIoT Dev Team, 2016-2020
 
 version: "2"
 
@@ -14,7 +14,7 @@ services:
     environment:
       GF_SECURITY_ADMIN_PASSWORD: __SUPER_SECRET_TO_CHANGE__
       #GF_SERVER_ROOT_URL: http://grafana.server.name
-      GF_INSTALL_PLUGINS: grafana-clock-panel,grafana-simple-json-datasource,grafana-worldmap-panel,grafana-piechart-panel,mtanda-heatmap-epoch-panel,briangann-gauge-panel,jdbranham-diagram-panel,snuids-radar-panel,fatcloud-windrose-panel
+      GF_INSTALL_PLUGINS: grafana-clock-panel,grafana-simple-json-datasource,grafana-worldmap-panel,grafana-piechart-panel,mtanda-heatmap-epoch-panel,briangann-gauge-panel,jdbranham-diagram-panel,snuids-radar-panel,fatcloud-windrose-panel,snuids-trafficlights-panel,larona-epict-panel,grafana-polystat-panel,natel-plotly-panel,bessler-pictureit-panel,pierosavi-imageit-panel,agenty-flowcharting-panel,abhisant-druid-datasource
     volumes:
        - ./configuration/grafana/grafana.ini:/etc/grafana/grafana.ini
        - ./configuration/grafana/dashboards/:/var/lib/grafana/dashboards/
