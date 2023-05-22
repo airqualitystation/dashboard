@@ -15,8 +15,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 8,
-  "iteration": 1677655875371,
+  "id": 9,
+  "iteration": 1684761989942,
   "links": [],
   "panels": [
     {
@@ -270,7 +270,7 @@
             [
               {
                 "params": [
-                  "particuleGT10"
+                  "pm10Atmospheric"
                 ],
                 "type": "field"
               }
@@ -328,7 +328,7 @@
     },
     {
       "aliasColors": {},
-      "bars": true,
+      "bars": false,
       "dashLength": 10,
       "dashes": false,
       "datasource": "InfluxDB",
@@ -382,7 +382,7 @@
             [
               {
                 "params": [
-                  "particuleGT1_0"
+                  "pm2_5Atmospheric"
                 ],
                 "type": "field"
               }
@@ -441,7 +441,7 @@
     },
     {
       "aliasColors": {},
-      "bars": true,
+      "bars": false,
       "dashLength": 10,
       "dashes": false,
       "datasource": "InfluxDB",
@@ -495,7 +495,7 @@
             [
               {
                 "params": [
-                  "particuleGT1_0"
+                  "pm1_0Atmospheric"
                 ],
                 "type": "field"
               }
@@ -820,7 +820,7 @@
         "x": 12,
         "y": 6
       },
-      "id": 146,
+      "id": 218,
       "legend": {
         "avg": false,
         "current": false,
@@ -839,20 +839,13 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "scopedVars": {
-        "deviceName": {
-          "selected": true,
-          "text": "AQ_333820",
-          "value": "AQ_333820"
-        }
-      },
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
-      "steppedLine": true,
+      "steppedLine": false,
       "targets": [
         {
-          "alias": "redundancy",
+          "alias": "pressure",
           "groupBy": [],
           "measurement": "data",
           "orderByTime": "ASC",
@@ -863,7 +856,7 @@
             [
               {
                 "params": [
-                  "redundancy"
+                  "pressure"
                 ],
                 "type": "field"
               }
@@ -882,7 +875,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Redundancy",
+      "title": "Pressure",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -899,11 +892,11 @@
       "yaxes": [
         {
           "decimals": 0,
-          "format": "none",
+          "format": "pressurehpa",
           "label": "",
           "logBase": 1,
           "max": null,
-          "min": "0",
+          "min": null,
           "show": true
         },
         {
@@ -1532,6 +1525,119 @@
       "valueName": "current"
     },
     {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "InfluxDB",
+      "fill": 1,
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 16,
+        "y": 11
+      },
+      "id": 146,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {},
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "scopedVars": {
+        "deviceName": {
+          "selected": true,
+          "text": "AQ_333820",
+          "value": "AQ_333820"
+        }
+      },
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": true,
+      "targets": [
+        {
+          "alias": "redundancy",
+          "groupBy": [],
+          "measurement": "data",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "redundancy"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "deviceName",
+              "operator": "=~",
+              "value": "/^$deviceName$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Redundancy",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "none",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
       "collapsed": false,
       "gridPos": {
         "h": 1,
@@ -1542,7 +1648,7 @@
       "id": 203,
       "panels": [],
       "repeat": null,
-      "repeatIteration": 1677655875371,
+      "repeatIteration": 1684761989942,
       "repeatPanelId": 44,
       "scopedVars": {
         "deviceName": {
@@ -1602,7 +1708,7 @@
         "showThresholdMarkers": true
       },
       "pluginVersion": "6.2.5",
-      "repeatIteration": 1677655875371,
+      "repeatIteration": 1684761989942,
       "repeatPanelId": 46,
       "repeatedByRow": true,
       "scopedVars": {
@@ -1691,7 +1797,7 @@
         "showThresholdMarkers": true
       },
       "pluginVersion": "6.2.5",
-      "repeatIteration": 1677655875371,
+      "repeatIteration": 1684761989942,
       "repeatPanelId": 54,
       "repeatedByRow": true,
       "scopedVars": {
@@ -1766,7 +1872,7 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "repeatIteration": 1677655875371,
+      "repeatIteration": 1684761989942,
       "repeatPanelId": 37,
       "repeatedByRow": true,
       "scopedVars": {
@@ -1881,7 +1987,7 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "repeatIteration": 1677655875371,
+      "repeatIteration": 1684761989942,
       "repeatPanelId": 202,
       "repeatedByRow": true,
       "scopedVars": {
@@ -1997,7 +2103,7 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "repeatIteration": 1677655875371,
+      "repeatIteration": 1684761989942,
       "repeatPanelId": 138,
       "repeatedByRow": true,
       "scopedVars": {
@@ -2113,7 +2219,7 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "repeatIteration": 1677655875371,
+      "repeatIteration": 1684761989942,
       "repeatPanelId": 35,
       "repeatedByRow": true,
       "scopedVars": {
@@ -2258,7 +2364,7 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "repeatIteration": 1677655875371,
+      "repeatIteration": 1684761989942,
       "repeatPanelId": 36,
       "repeatedByRow": true,
       "scopedVars": {
@@ -2374,7 +2480,7 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "repeatIteration": 1677655875371,
+      "repeatIteration": 1684761989942,
       "repeatPanelId": 146,
       "repeatedByRow": true,
       "scopedVars": {
@@ -2500,7 +2606,7 @@
         "showThresholdMarkers": true
       },
       "pluginVersion": "6.2.5",
-      "repeatIteration": 1677655875371,
+      "repeatIteration": 1684761989942,
       "repeatPanelId": 49,
       "repeatedByRow": true,
       "scopedVars": {
@@ -2589,7 +2695,7 @@
         "showThresholdMarkers": true
       },
       "pluginVersion": "6.2.5",
-      "repeatIteration": 1677655875371,
+      "repeatIteration": 1684761989942,
       "repeatPanelId": 147,
       "repeatedByRow": true,
       "scopedVars": {
@@ -2686,7 +2792,7 @@
           "to": "null"
         }
       ],
-      "repeatIteration": 1677655875371,
+      "repeatIteration": 1684761989942,
       "repeatPanelId": 52,
       "repeatedByRow": true,
       "scopedVars": {
@@ -2800,7 +2906,7 @@
           "to": "null"
         }
       ],
-      "repeatIteration": 1677655875371,
+      "repeatIteration": 1684761989942,
       "repeatPanelId": 142,
       "repeatedByRow": true,
       "scopedVars": {
@@ -2914,7 +3020,7 @@
           "to": "null"
         }
       ],
-      "repeatIteration": 1677655875371,
+      "repeatIteration": 1684761989942,
       "repeatPanelId": 90,
       "repeatedByRow": true,
       "scopedVars": {
@@ -3028,7 +3134,7 @@
           "to": "null"
         }
       ],
-      "repeatIteration": 1677655875371,
+      "repeatIteration": 1684761989942,
       "repeatPanelId": 106,
       "repeatedByRow": true,
       "scopedVars": {
@@ -3097,7 +3203,6 @@
       {
         "allValue": null,
         "current": {
-          "tags": [],
           "text": "AQ_333820 + AQ_393620",
           "value": [
             "AQ_333820",
@@ -3126,8 +3231,8 @@
     ]
   },
   "time": {
-    "from": "now-7d",
-    "to": "now"
+    "from": "2023-05-22T12:04:51.197Z",
+    "to": "2023-05-22T13:26:30.033Z"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -3157,5 +3262,5 @@
   "timezone": "",
   "title": "Air Quality TIMC",
   "uid": "AQ",
-  "version": 5
+  "version": 2
 }
